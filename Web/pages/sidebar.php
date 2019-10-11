@@ -17,7 +17,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Dashboard -->
         <li class="nav-item">
-            <a href="#" class="nav-link active"><i class="nav-icon fa fa-tachometer-alt" aria-hidden="true"></i><p>Dashboard</p></a>
+            <a href="#" class="nav-link active" id="nav-dashboard"><i class="nav-icon fa fa-tachometer-alt" aria-hidden="true"></i><p>Dashboard</p></a>
         </li>
         <!-- Course -->
         <li class="nav-item has-treeview">
@@ -25,25 +25,15 @@
             <i class="nav-icon fa fa-book" aria-hidden="true"></i>
             <p>Course <i class="fa fa-angle-left right"></i></p>
             </a>
-            <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="#" class="nav-link"><i class="far fa-circle nav-icon text-info" aria-hidden="true"></i><p>软件工程</p></a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link"><i class="far fa-circle nav-icon text-info" aria-hidden="true"></i><p>软件工程综合课</p></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="far fa-circle nav-icon text-info" aria-hidden="true"></i><p>计算机英语</p></a>
-                </li>
-            </ul>
+            <ul class="nav nav-treeview" id="nav-course-list"></ul>
         </li>
         <!-- Calendar -->
         <li class="nav-item">
-            <a href="#" class="nav-link"><i class="nav-icon fa fa-calendar" aria-hidden="true"></i><p>Calendar</p></a>
+            <a href="#" class="nav-link" id="nav-calendar"><i class="nav-icon fa fa-calendar" aria-hidden="true"></i><p>Calendar</p></a>
             </li>
         <!-- Inbox -->
         <li class="nav-item">
-            <a href="#" class="nav-link"><i class="nav-icon fa fa-inbox" aria-hidden="true"></i><p>Inbox</p></a>
+            <a href="#" class="nav-link" id="nav-inbox"><i class="nav-icon fa fa-inbox" aria-hidden="true"></i><p>Inbox</p></a>
             </li>
         <!-- Help -->
         <li class="nav-item">
@@ -51,9 +41,34 @@
             </li>
         <!-- Contact -->
         <li class="nav-item">
-            <a href="#" class="nav-link"><i class="nav-icon fa fa-star" aria-hidden="true"></i><p>Contact</p></a>
+            <a href="#" class="nav-link" id="nav-contact"><i class="nav-icon fa fa-star" aria-hidden="true"></i><p>Contact</p></a>
             </li>
         </ul>
     </nav>
     </div>
 </aside>
+
+<script type="text/javascript">
+    function update_sidebar_course(){
+        let course_data = [{"course_name": "软件开发", "course_id": 0}, {"course_name": "软件开发综合课", "course_id": 1}, {"course_name": "计算机嘤语", "course_id": 2}];
+        let html_code = "";
+        for (let i = 0; i < course_data.length; ++i){
+            item = '<li class="nav-item">\
+                    <a href="#" class="nav-link" id="nav-course-' + i + '"><i class="far fa-circle nav-icon text-info" aria-hidden="true"></i><p>' + course_data[i]['course_name']+ '</p></a>\
+                    </li>';
+            html_code = html_code + item;
+        }
+        $("#nav-course-list").html(html_code);
+        for (let i = 0; i < course_data.length; ++i) 
+            $("#nav-course-" + i).click(function(){ redirect("/", {"page": "Home"}); });
+    }
+    update_sidebar_course();
+
+    $("#nav-dashboard").click(function(){ redirect("/", {}); });
+    $("#nav-calendar").click(function(){ redirect("/", {"page": "Calendar"}); });
+    $("#nav-inbox").click(function(){ redirect("/", {"page": "Inbox"}); });
+    /*
+    $("#nav-inbox").click(function(){ redirect("index.php", {}); });
+    $("#nav-contact").click(function(){ redirect("index.php", {}); });
+    */
+</script>

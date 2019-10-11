@@ -9,9 +9,14 @@
     <ol class="navbar-nav ml-2 text-sm">
         <? foreach ($navbar_link as $key => $value){?>
         <li class="breadcrumb-item <? echo ($value[2]?"active":""); ?>">
-        <? if ($value[2]==false) {?> <a href="<? echo $value[1];?>" id="<? echo $value[0]; ?>"><?} echo $key;?></a></li>
+        <? if ($value[2]==false) {?> <a href="#" id="<? echo $value[0]; ?>"><?} echo $key;?></a></li>
         <? } ?>
     </ol>
+    <script type="text/javascript">
+        <? foreach ($navbar_link as $key => $value){ if ($value[1] != "#"){?>
+            $("#<? echo $value[0]; ?>").click(function(){ redirect("/", {"page": "<? echo $value[1]; ?>" }); });
+        <? }} ?>
+    </script>
 
     <!-- SEARCH FORM -->
     <!--form class="form-inline ml-3">

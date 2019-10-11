@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-9 col-12">
-                    <div class="row">
+                    <div class="row" id="dashboard-list">
                         <div class="col-lg-4 col-12">
                             <div class="small-box bg-info">
                                 <div class="inner"><h3>软件开发</h3><br></div>
@@ -53,5 +53,26 @@
             </div>
         </div>
     </section>
-    <!-- /.content -->
 </div>
+
+<script type="text/javascript">
+    function update_dashboard_course(){
+        let course_data = [{"course_name": "软件开发", "course_id": 0}, {"course_name": "软件开发综合课", "course_id": 1}, {"course_name": "计算机嘤语", "course_id": 2}];
+        let html_code = "";
+        for (let i = 0; i < course_data.length; ++i){
+            item = '<div class="col-lg-4 col-12">\
+                            <div class="small-box bg-info">\
+                                <div class="inner"><h3>' + course_data[i]['course_name']+ '</h3><br></div>\
+                                <div class="icon"><i class="fa fa-book"></i></div>\
+                                <a href="#" class="small-box-footer" id="dash-course-' + i + '">To Learn <i class="fas fa-arrow-circle-right"></i></a>\
+                            </div>\
+                        </div>';
+            html_code = html_code + item;
+            $("#dash-course-" + i).click(function(){ redirect("/", {"page": "Home"}); });
+        }
+        $("#dashboard-list").html(html_code);
+        for (let i = 0; i < course_data.length; ++i) 
+            $("#dash-course-" + i).click(function(){ redirect("/", {"page": "Home"}); });
+    }
+    update_dashboard_course();
+</script>
