@@ -2,9 +2,16 @@
 <project name="Canvas" id="Project_8fb8ab" template="Default" database="MySql" >
 	<schema name="canvas" schemaname="canvas" >
 		<table name="comment" >
-			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="post" type="int" jt="4" />
-			<column name="content" type="varchar" length="1024" jt="12" />
+			<comment><![CDATA[此数据表存储评论内容]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[评论ID]]></comment>
+			</column>
+			<column name="post" type="int" jt="4" >
+				<comment><![CDATA[评论属于哪一个帖子的ID]]></comment>
+			</column>
+			<column name="content" type="varchar" length="1024" jt="12" >
+				<comment><![CDATA[评论的内容]]></comment>
+			</column>
 			<index name="pk_comment_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -14,11 +21,22 @@
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="course" >
-			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="home" type="int" jt="4" />
-			<column name="syllabus" type="int" jt="4" />
-			<column name="assignment" type="int" jt="4" />
-			<column name="modules" type="varchar" length="512" jt="12" />
+			<comment><![CDATA[此数据表存储课程信息]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[课程ID]]></comment>
+			</column>
+			<column name="home" type="int" jt="4" >
+				<comment><![CDATA[课程本周教学内容的文本资源ID]]></comment>
+			</column>
+			<column name="syllabus" type="int" jt="4" >
+				<comment><![CDATA[课程大纲文本资源ID]]></comment>
+			</column>
+			<column name="assignment" type="int" jt="4" >
+				<comment><![CDATA[课程当前激活的作业的问题ID]]></comment>
+			</column>
+			<column name="modules" type="varchar" length="512" jt="12" >
+				<comment><![CDATA[课程的模块结构与对应资源ID，JSON格式]]></comment>
+			</column>
 			<index name="pk_course_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -34,12 +52,25 @@
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="data" >
-			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="student" type="int" jt="4" />
-			<column name="problem" type="int" jt="4" />
-			<column name="score" type="int" jt="4" />
-			<column name="content" type="varchar" length="1024" jt="12" />
-			<column name="state" type="int" jt="4" />
+			<comment><![CDATA[此数据表存储学生回答老师问题的记录]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[回答记录ID]]></comment>
+			</column>
+			<column name="student" type="int" jt="4" >
+				<comment><![CDATA[学生ID]]></comment>
+			</column>
+			<column name="problem" type="int" jt="4" >
+				<comment><![CDATA[问题ID]]></comment>
+			</column>
+			<column name="score" type="int" jt="4" >
+				<comment><![CDATA[得分]]></comment>
+			</column>
+			<column name="content" type="varchar" length="1024" jt="12" >
+				<comment><![CDATA[回答内容]]></comment>
+			</column>
+			<column name="state" type="int" jt="4" >
+				<comment><![CDATA[当前回答状态]]></comment>
+			</column>
 			<index name="pk_data_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -52,10 +83,19 @@
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="file" >
-			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="path" type="int" jt="4" />
-			<column name="user" type="int" jt="4" />
-			<column name="markdown" type="int" jt="4" />
+			<comment><![CDATA[此数据表存储上传文件信息]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[文件ID]]></comment>
+			</column>
+			<column name="path" type="int" jt="4" >
+				<comment><![CDATA[文件在服务器上的 URL]]></comment>
+			</column>
+			<column name="user" type="int" jt="4" >
+				<comment><![CDATA[上传此文件用户ID]]></comment>
+			</column>
+			<column name="markdown" type="int" jt="4" >
+				<comment><![CDATA[此文件附属于的文本资源ID]]></comment>
+			</column>
 			<index name="pk_file_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -68,11 +108,22 @@
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="mail" >
-			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="from" type="int" jt="4" />
-			<column name="to" type="int" jt="4" />
-			<column name="ref" type="int" jt="4" />
-			<column name="content" type="int" jt="4" />
+			<comment><![CDATA[此数据表存储用户间来往邮件]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[邮件主键]]></comment>
+			</column>
+			<column name="from" type="int" jt="4" >
+				<comment><![CDATA[寄件人ID]]></comment>
+			</column>
+			<column name="to" type="int" jt="4" >
+				<comment><![CDATA[收件人ID]]></comment>
+			</column>
+			<column name="ref" type="int" jt="4" >
+				<comment><![CDATA[回复邮件ID]]></comment>
+			</column>
+			<column name="content" type="int" jt="4" >
+				<comment><![CDATA[邮件内容]]></comment>
+			</column>
 			<index name="pk_mail_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -88,9 +139,16 @@
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="markdown" >
-			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="course" type="int" jt="4" />
-			<column name="content" type="varchar" length="1024" jt="12" />
+			<comment><![CDATA[存储文本资源]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[文本资源ID]]></comment>
+			</column>
+			<column name="course" type="int" jt="4" >
+				<comment><![CDATA[文本资源属于哪一个课程ID]]></comment>
+			</column>
+			<column name="content" type="varchar" length="1024" jt="12" >
+				<comment><![CDATA[文本资源的内容]]></comment>
+			</column>
 			<index name="pk_markdown_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -100,9 +158,16 @@
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="post" >
-			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="course" type="int" jt="4" />
-			<column name="content" type="varchar" length="1024" jt="12" />
+			<comment><![CDATA[此数据表存储帖子]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[帖子ID]]></comment>
+			</column>
+			<column name="course" type="int" jt="4" >
+				<comment><![CDATA[帖子属于哪一个课程的ID]]></comment>
+			</column>
+			<column name="content" type="varchar" length="1024" jt="12" >
+				<comment><![CDATA[帖子的具体内容]]></comment>
+			</column>
 			<index name="pk_post_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -112,11 +177,22 @@
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="problem" >
-			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="state" type="int" jt="4" />
-			<column name="score" type="int" jt="4" />
-			<column name="content" type="varchar" length="1024" jt="12" />
-			<column name="course" type="int" jt="4" />
+			<comment><![CDATA[此数据表存储问题，可以用考试或作业]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[问题ID]]></comment>
+			</column>
+			<column name="state" type="int" jt="4" >
+				<comment><![CDATA[问题当前的状态]]></comment>
+			</column>
+			<column name="score" type="int" jt="4" >
+				<comment><![CDATA[满分得分]]></comment>
+			</column>
+			<column name="content" type="varchar" length="1024" jt="12" >
+				<comment><![CDATA[问题内容，JSON 格式]]></comment>
+			</column>
+			<column name="course" type="int" jt="4" >
+				<comment><![CDATA[问题属于的课程ID]]></comment>
+			</column>
 			<index name="pk_problem_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -126,14 +202,22 @@
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="user" >
-			<comment><![CDATA[A table for saving user information]]></comment>
+			<comment><![CDATA[用户数据表]]></comment>
 			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
-				<comment><![CDATA[user id]]></comment>
+				<comment><![CDATA[用户ID]]></comment>
 			</column>
-			<column name="password" type="char" length="32" jt="1" />
-			<column name="nickname" type="varchar" length="100" jt="12" />
-			<column name="sid" type="int" jt="4" mandatory="y" />
-			<column name="role" type="int" jt="4" />
+			<column name="password" type="char" length="32" jt="1" >
+				<comment><![CDATA[加密后的密码]]></comment>
+			</column>
+			<column name="nickname" type="varchar" length="100" jt="12" >
+				<comment><![CDATA[用户昵称]]></comment>
+			</column>
+			<column name="sid" type="int" jt="4" mandatory="y" >
+				<comment><![CDATA[用户学号 / 教师工号]]></comment>
+			</column>
+			<column name="role" type="int" jt="4" >
+				<comment><![CDATA[用户角色：学生、老师、管理员]]></comment>
+			</column>
 			<index name="pk_table_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -141,14 +225,15 @@
 		</table>
 	</schema>
 	<layout name="Default Layout" id="Layout_2782269" show_relation="columns" >
-		<entity schema="canvas" name="data" color="C1D8EE" x="320" y="48" />
+		<comment><![CDATA[Canvas]]></comment>
 		<entity schema="canvas" name="user" color="C1D8EE" x="80" y="48" />
+		<entity schema="canvas" name="data" color="C1D8EE" x="320" y="48" />
+		<entity schema="canvas" name="problem" color="C1D8EE" x="480" y="48" />
 		<entity schema="canvas" name="mail" color="C1D8EE" x="224" y="240" />
 		<entity schema="canvas" name="file" color="C1D8EE" x="48" y="416" />
-		<entity schema="canvas" name="problem" color="C1D8EE" x="480" y="48" />
 		<entity schema="canvas" name="markdown" color="C1D8EE" x="480" y="416" />
-		<entity schema="canvas" name="course" color="C1D8EE" x="592" y="224" />
-		<entity schema="canvas" name="post" color="C1D8EE" x="768" y="224" />
 		<entity schema="canvas" name="comment" color="C1D8EE" x="768" y="416" />
+		<entity schema="canvas" name="post" color="C1D8EE" x="768" y="224" />
+		<entity schema="canvas" name="course" color="C1D8EE" x="592" y="224" />
 	</layout>
 </project>
