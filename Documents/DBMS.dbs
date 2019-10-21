@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Canvas" id="Project_8fb8ab" template="Default" database="MySql" >
+	<schema name="canvas" schemaname="canvas" >
+		<table name="comment" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="post" type="int" jt="4" />
+			<column name="content" type="varchar" length="1024" jt="12" />
+			<index name="pk_comment_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_comment_post" to_schema="canvas" to_table="post" >
+				<fk_column name="post" pk="id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="course" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="home" type="int" jt="4" />
+			<column name="syllabus" type="int" jt="4" />
+			<column name="assignment" type="int" jt="4" />
+			<column name="modules" type="varchar" length="512" jt="12" />
+			<index name="pk_course_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="data" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="student" type="int" jt="4" />
+			<column name="problem" type="int" jt="4" />
+			<column name="score" type="int" jt="4" />
+			<column name="content" type="varchar" length="1024" jt="12" />
+			<column name="state" type="int" jt="4" />
+			<index name="pk_data_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_data_problem" to_schema="canvas" to_table="problem" >
+				<fk_column name="problem" pk="id" />
+			</fk>
+			<fk name="fk_data_user" to_schema="canvas" to_table="user" >
+				<fk_column name="student" pk="id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="file" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="path" type="int" jt="4" />
+			<column name="user" type="int" jt="4" />
+			<column name="markdown" type="int" jt="4" />
+			<index name="pk_file_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_file_user" to_schema="canvas" to_table="user" >
+				<fk_column name="user" pk="id" />
+			</fk>
+			<fk name="fk_file_markdown" to_schema="canvas" to_table="markdown" >
+				<fk_column name="markdown" pk="id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="mail" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="from" type="int" jt="4" />
+			<column name="to" type="int" jt="4" />
+			<column name="ref" type="int" jt="4" />
+			<column name="content" type="int" jt="4" />
+			<index name="pk_mail_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_mail_mail" to_schema="canvas" to_table="mail" >
+				<fk_column name="ref" pk="id" />
+			</fk>
+			<fk name="fk_mail_user" to_schema="canvas" to_table="user" >
+				<fk_column name="from" pk="id" />
+			</fk>
+			<fk name="fk_mail_user_to" to_schema="canvas" to_table="user" >
+				<fk_column name="to" pk="id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="markdown" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="course" type="int" jt="4" />
+			<column name="content" type="varchar" length="1024" jt="12" />
+			<index name="pk_markdown_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_markdown_course" to_schema="canvas" to_table="course" >
+				<fk_column name="course" pk="id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="post" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="course" type="int" jt="4" />
+			<column name="content" type="varchar" length="1024" jt="12" />
+			<index name="pk_post_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_post_course" to_schema="canvas" to_table="course" >
+				<fk_column name="course" pk="id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="problem" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="state" type="int" jt="4" />
+			<column name="score" type="int" jt="4" />
+			<column name="content" type="varchar" length="1024" jt="12" />
+			<column name="course" type="int" jt="4" />
+			<index name="pk_problem_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_problem_course" to_schema="canvas" to_table="course" >
+				<fk_column name="course" pk="id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="user" >
+			<comment><![CDATA[A table for saving user information]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[user id]]></comment>
+			</column>
+			<column name="password" type="char" length="32" jt="1" />
+			<column name="nickname" type="varchar" length="100" jt="12" />
+			<column name="sid" type="int" jt="4" mandatory="y" />
+			<column name="role" type="int" jt="4" />
+			<index name="pk_table_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout_2782269" show_relation="columns" >
+		<entity schema="canvas" name="problem" color="C1D8EE" x="560" y="48" />
+		<entity schema="canvas" name="data" color="C1D8EE" x="320" y="48" />
+		<entity schema="canvas" name="user" color="C1D8EE" x="80" y="48" />
+		<entity schema="canvas" name="mail" color="C1D8EE" x="224" y="240" />
+		<entity schema="canvas" name="course" color="C1D8EE" x="544" y="240" />
+		<entity schema="canvas" name="markdown" color="C1D8EE" x="560" y="416" />
+		<entity schema="canvas" name="file" color="C1D8EE" x="48" y="416" />
+		<entity schema="canvas" name="post" color="C1D8EE" x="720" y="240" />
+		<entity schema="canvas" name="comment" color="C1D8EE" x="720" y="416" />
+	</layout>
+</project>
