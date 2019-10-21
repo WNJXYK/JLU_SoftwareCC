@@ -22,6 +22,15 @@
 			<index name="pk_course_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
+			<fk name="fk_course_markdown_h" to_schema="canvas" to_table="markdown" >
+				<fk_column name="home" pk="id" />
+			</fk>
+			<fk name="fk_course_markdown_s" to_schema="canvas" to_table="markdown" >
+				<fk_column name="syllabus" pk="id" />
+			</fk>
+			<fk name="fk_course_problem" to_schema="canvas" to_table="problem" >
+				<fk_column name="assignment" pk="id" />
+			</fk>
 			<storage><![CDATA[engine=InnoDB]]></storage>
 		</table>
 		<table name="data" >
@@ -132,14 +141,14 @@
 		</table>
 	</schema>
 	<layout name="Default Layout" id="Layout_2782269" show_relation="columns" >
-		<entity schema="canvas" name="problem" color="C1D8EE" x="560" y="48" />
 		<entity schema="canvas" name="data" color="C1D8EE" x="320" y="48" />
 		<entity schema="canvas" name="user" color="C1D8EE" x="80" y="48" />
 		<entity schema="canvas" name="mail" color="C1D8EE" x="224" y="240" />
-		<entity schema="canvas" name="course" color="C1D8EE" x="544" y="240" />
-		<entity schema="canvas" name="markdown" color="C1D8EE" x="560" y="416" />
 		<entity schema="canvas" name="file" color="C1D8EE" x="48" y="416" />
-		<entity schema="canvas" name="post" color="C1D8EE" x="720" y="240" />
-		<entity schema="canvas" name="comment" color="C1D8EE" x="720" y="416" />
+		<entity schema="canvas" name="problem" color="C1D8EE" x="480" y="48" />
+		<entity schema="canvas" name="markdown" color="C1D8EE" x="480" y="416" />
+		<entity schema="canvas" name="course" color="C1D8EE" x="592" y="224" />
+		<entity schema="canvas" name="post" color="C1D8EE" x="768" y="224" />
+		<entity schema="canvas" name="comment" color="C1D8EE" x="768" y="416" />
 	</layout>
 </project>
