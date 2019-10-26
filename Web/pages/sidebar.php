@@ -1,16 +1,16 @@
 <!-- Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="./" class="brand-link">
-    <img src="./imgs/Logo.png" class="brand-image img-circle elevation-3" style="opacity: .8" alt="Canvas Logo" >
+    <a href="/" class="brand-link">
+    <img src="/imgs/Logo.png" class="brand-image img-circle elevation-3" style="opacity: .8" alt="Canvas Logo" >
     <span class="brand-text font-weight-light">Canvas</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
     <!-- Sidebar User -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image"><img src="./imgs/Header.png" class="img-circle elevation-2" alt="User Header"></div>
-        <div class="info"><a href="#" class="d-block">User Name</a></div>
+        <div class="image"><img src="/imgs/Header.png" class="img-circle elevation-2" alt="User Header"></div>
+        <div class="info"><a href="#" class="d-block ctext-username">User Name</a></div>
     </div>
     <!-- Sidebar Menu -->
     <nav class="mt-2">
@@ -49,24 +49,28 @@
 </aside>
 
 <script type="text/javascript">
-    function update_sidebar_course(){
-        let course_data = [{"course_name": "软件开发", "course_id": 0}, {"course_name": "软件开发综合课", "course_id": 1}, {"course_name": "计算机嘤语", "course_id": 2}];
+    function update_sidebar_course(course_data){
         let html_code = "";
         for (let i = 0; i < course_data.length; ++i){
             item = '<li class="nav-item">\
-                    <a href="#" class="nav-link" id="nav-course-' + i + '"><i class="far fa-circle nav-icon text-info" aria-hidden="true"></i><p>' + course_data[i]['course_name']+ '</p></a>\
+                    <a href="#" class="nav-link" id="nav-course-' + i + '"><i class="far fa-circle nav-icon text-info" aria-hidden="true"></i><p>' + course_data[i]['name']+ '</p></a>\
                     </li>';
             html_code = html_code + item;
         }
         $("#nav-course-list").html(html_code);
         for (let i = 0; i < course_data.length; ++i) 
-            $("#nav-course-" + i).click(function(){ redirect("/", {"page": "Home"}); });
+            $("#nav-course-" + i).click(function(){ 
+                redirect("/", {"page": "Home", "Course_ID": course_data[i]['id'], "Course_Name": course_data[i]['name']}); 
+            });
     }
-    update_sidebar_course();
 
-    $("#nav-dashboard").click(function(){ redirect("/", {}); });
-    $("#nav-calendar").click(function(){ redirect("/", {"page": "Calendar"}); });
-    $("#nav-inbox").click(function(){ redirect("/", {"page": "Inbox"}); });
+    $(function(){
+        course_list(update_sidebar_course);
+        $("#nav-dashboard").click(function(){ redirect("/", {}); });
+        $("#nav-calendar").click(function(){ redirect("/", {"page": "Calendar"}); });
+        $("#nav-inbox").click(function(){ redirect("/", {"page": "Inbox"}); });
+    });
+
     /*
     $("#nav-inbox").click(function(){ redirect("index.php", {}); });
     $("#nav-contact").click(function(){ redirect("index.php", {}); });

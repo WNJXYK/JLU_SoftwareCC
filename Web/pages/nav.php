@@ -7,15 +7,15 @@
 
     <!-- Nav Links-->
     <ol class="navbar-nav ml-2 text-sm">
-        <? foreach ($navbar_link as $key => $value){?>
-        <li class="breadcrumb-item <? echo ($value[2]?"active":""); ?>">
-        <? if ($value[2]==false) {?> <a href="#" id="<? echo $value[0]; ?>"><?} echo $key;?></a></li>
-        <? } ?>
+        <?php foreach ($navbar_link as $key => $value){?>
+        <li class="breadcrumb-item <?php echo ($value[2]?"active":""); ?>">
+        <?php if ($value[2]==false) {?> <a href="#" id="<?php echo $value[0]; ?>"><?} echo $key;?></a></li>
+        <?php } ?>
     </ol>
     <script type="text/javascript">
-        <? foreach ($navbar_link as $key => $value){ if ($value[1] != "#"){?>
-            $("#<? echo $value[0]; ?>").click(function(){ redirect("/", {"page": "<? echo $value[1]; ?>" }); });
-        <? }} ?>
+        <?php foreach ($navbar_link as $key => $value){ if ($value[1] != "#"){?>
+            $("#<?php echo $value[0]; ?>").click(function(){ redirect("/", {"page": "<?php echo $value[1]; ?>" }); });
+        <?php }} ?>
     </script>
 
     <!-- SEARCH FORM -->
@@ -35,11 +35,12 @@
     <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-item dropdown-header">User Name</span>
+        <span class="dropdown-item dropdown-header ctext-usertype">User Type</span>
+        <span class="dropdown-item dropdown-header ctext-username">User Name</span>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item"> Profile </a>
-        <a href="#" class="dropdown-item"> Inbox </a>
-        <a href="#" class="dropdown-item"> Logout </a>
+        <a href="#" class="dropdown-item" id="user-inbox"> Inbox </a>
+        <a href="#" class="dropdown-item" id="user-logout"> Logout </a>
     </li>
     </ul>
 </nav>

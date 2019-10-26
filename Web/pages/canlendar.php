@@ -2,13 +2,8 @@
 <link rel="stylesheet" href="../plugins/fullcalendar/main.min.css">
 <link rel="stylesheet" href="../plugins/fullcalendar-daygrid/main.min.css">
 <link rel="stylesheet" href="../plugins/fullcalendar-list/main.min.css">
-<link rel="stylesheet" href="../plugins/fullcalendar-timegrid/main.min.css">
 <link rel="stylesheet" href="../plugins/fullcalendar-bootstrap/main.min.css">
 <div class="content-wrapper">
-    <section class="content-header">
-        <div class="container-fluid"></div>
-    </section>
-
     <!-- Main content -->
     <section class="content">
     <div class="container-fluid">
@@ -17,7 +12,6 @@
                 <div id="calendar"></div>
             </div>
             <div class="col-lg-4 col-12">
-                <h2>Calendar</h2>
                 <div id="clist"></div>
             </div>
         </div>
@@ -28,7 +22,6 @@
 <script src="./plugins/fullcalendar/main.min.js"></script>
 <script src="./plugins/fullcalendar-list/main.min.js"></script>
 <script src="./plugins/fullcalendar-daygrid/main.min.js"></script>
-<script src="./plugins/fullcalendar-timegrid/main.min.js"></script>
 <script src="./plugins/fullcalendar-bootstrap/main.min.js"></script>
 
 <script type="text/javascript">
@@ -46,12 +39,9 @@
         let calendarFull = document.getElementById('calendar');
         let calendarList = document.getElementById('clist');
         let calendarF = new Calendar(calendarFull, {
-        plugins: [ 'bootstrap', 'dayGrid', 'timeGrid'],
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth, timeGridWeek, timeGridDay'
-        },
+        plugins: [ 'bootstrap', 'dayGrid'],
+        header: { left: '', center: 'title', right: ''},
+        defaultView: 'dayGridMonth',
         events: courseEvent, 
         });
         let calendarL = new Calendar(calendarList, {

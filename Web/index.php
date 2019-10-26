@@ -1,9 +1,12 @@
-<?
+<?php
+  // Check User Validation
+  require_once("./libs/_user.php");
+  if (!check_user_token()){ header("Location: ./login.php"); exit; }
+
+  // Built-in Navigation
   $page_type = "Dashboard"; 
   $page_content = "./pages/dashboard.php"; // 页面内容
   $navbar_link = ["Dashboard"=>["navbar-dashboard", "Dashboard", true]]; // 导航栏地址
-
-  if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["page"])) $page_type = $_GET["page"]; // 获得页面种类 Just For Test
   if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["page"])) $page_type = $_POST["page"]; // 获得页面种类
 
   // Index 框架内部页面导航
@@ -63,41 +66,40 @@
         "Course"=>["navbar-inbox", "Inbox", true]
       ];
       break;
+    case "Markdown":
+      $page_content = "./pages/course.php";
+      $navbar_link = [
+        "Course"=>["navbar-course", "Home", false],
+        "Modules"=>["navbar-modules", "Modules", false],
+        "Markdown"=>["navbar-markdown", "#", true]
+      ];
+      break;
+    case "Post":
+      $page_content = "./pages/course.php";
+      $navbar_link = [
+        "Course"=>["navbar-course", "Home", false],
+        "Discussions"=>["navbar-discussions", "Discussions", false],
+        "Markdown"=>["navbar-post", "#", true]
+      ];
+      break;
     default: die("Wrong Parameters."); break;
   }
 
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><? echo $page_type; ?></title>
-
-    <!-- JS -->
-    <script src="./plugins/jquery/jquery.min.js"></script>
-    <script src="./plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="./plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./plugins/bootstrap/js/theme.min.js"></script>
-    <script src="./js/nav.js"></script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="./plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
-    <link href="./plugins/bootstrap/css/theme.min.css" rel="stylesheet">
-
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-  </head>
+  <?php include("./pages/header.php")?>
   <body class="hold-transition sidebar-mini sidebar-collapse">
+      <?php 
+        foreach ($_REQUEST as $key => $value) {
+            echo "<input type='hidden' name='DATA-FROM' value='{$value}' id='{$key}'/>";
+        } 
+      ?>
       <div class="wrapper">
-        <? include("./pages/nav.php"); ?>
-        <? include("./pages/sidebar.php"); ?>
-        <? include($page_content); ?>
-        <? include("./pages/footer.php"); ?>
+        <?php include("./pages/nav.php"); ?>
+        <?php include("./pages/sidebar.php"); ?>
+        <?php include($page_content); ?>
+        <?php include("./pages/footer.php"); ?>
       </div>
   </body>
 </html>
