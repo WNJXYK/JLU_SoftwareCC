@@ -1,4 +1,5 @@
 <?php
+	//submit.php文件主要用于实现学生提交答案的功能
     header('Content-Type:application/json; charset=utf-8'); // Return in json
     
     require_once("_user.php"); // User Auth Support

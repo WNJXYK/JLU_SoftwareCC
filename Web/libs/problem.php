@@ -1,4 +1,5 @@
 <?php
+	//problem.php文件主要用于实现考试题目的创建、获取功能
     header('Content-Type:application/json; charset=utf-8'); // Return in json
     
     require_once("_user.php"); // User Auth Support

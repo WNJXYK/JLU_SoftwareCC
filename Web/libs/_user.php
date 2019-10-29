@@ -1,4 +1,5 @@
 <?php
+	//_user.php文件主要用于获取用户令牌和用户类型是否有效
     include_once("config.php");
     require_once("mysql.php"); // Mysql Support
     

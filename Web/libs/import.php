@@ -1,5 +1,5 @@
 <?php
-
+	//import.php文件主要用于实现管理员批量添加账号的功能
 	header('Content-Type:application/json; charset=utf-8'); // Return in json
 	require_once("config.php");
 	require_once("mysql.php"); // Mysql Support

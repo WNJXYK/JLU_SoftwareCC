@@ -1,3 +1,4 @@
+//Show the comment list
 function comment_list(post, func){
     $.get(
         getRoot() + "/libs/comment.php", 
@@ -10,6 +11,7 @@ function comment_list(post, func){
     );
 }
 
+//Send a comment in Discussion
 function comment_send(post, content, author, reply, func){
     let data = {
         "post": post,
@@ -29,7 +31,7 @@ function comment_send(post, content, author, reply, func){
     );
 }
 
-
+//Delete a comment in Discussion
 function comment_delete(id, func){
     $.post(
         getRoot() + "/libs/comment.php", 

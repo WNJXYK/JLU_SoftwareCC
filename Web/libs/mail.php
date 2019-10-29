@@ -1,4 +1,5 @@
 <?php
+	//mail.php文件主要用于实现发送和获取邮件
     header('Content-Type:application/json; charset=utf-8'); // Return in json
     
     require_once("mysql.php"); // Mysql Support

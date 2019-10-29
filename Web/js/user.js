@@ -1,3 +1,4 @@
+//To deal with user login
 function user_profile(id, func){
     $.get(
         getRoot() + "/libs/user.php", 

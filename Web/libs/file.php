@@ -1,4 +1,5 @@
 <?php
+	//file.php文件主要用于实现文件相关的操作，分为获取文件和上传文件
 	ini_set("display_errors", 0);
 	error_reporting(E_ALL ^ E_NOTICE);
 	error_reporting(E_ALL ^ E_WARNING);

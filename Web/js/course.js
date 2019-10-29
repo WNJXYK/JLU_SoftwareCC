@@ -1,3 +1,4 @@
+//Show the course list
 function course_list(func){
     $.get(
         getRoot() + "/libs/course.php", 
@@ -10,6 +11,7 @@ function course_list(func){
     );
 }
 
+//Show the course module
 function course_module(id, func){
     $.get(
         getRoot() + "/libs/course.php", 
@@ -22,6 +24,7 @@ function course_module(id, func){
     );
 }
 
+//Update the module of course
 function course_update_module(id, content){
     $.post(
         getRoot() + "/libs/course.php", 
@@ -34,6 +37,7 @@ function course_update_module(id, content){
     );
 }
 
+//Get the markdown of the course
 function course_markdown(id, func){
     $.get(
         getRoot() + "/libs/markdown.php",
@@ -46,6 +50,7 @@ function course_markdown(id, func){
     );
 }
 
+//New a markdown in course
 function course_new_markdown(course, func){
     $.post(
         getRoot() + "/libs/markdown.php",
@@ -58,6 +63,7 @@ function course_new_markdown(course, func){
     );
 }
 
+//Update the markdown of course
 function course_update_markdown(id, content){
     $.post(
         getRoot() + "/libs/markdown.php",
@@ -70,6 +76,7 @@ function course_update_markdown(id, content){
     );
 }
 
+//Give the answer to a problem in course
 function course_render_problem(problem){
     html_code = "";
     html_code += '<div class="form-group"><label for="Statement">' + problem.Statement + ' [ ';
@@ -98,6 +105,7 @@ function course_render_problem(problem){
     return html_code;
 }
 
+//Unlock the score of a quiz in course
 function course_unlock_quiz_score(quiz){
     for (let i = 0; i < quiz.Problem.length; ++i){
         course_problem(quiz.Problem[i], function(json){
@@ -109,6 +117,7 @@ function course_unlock_quiz_score(quiz){
     }
 }
 
+//Add the quiz to a question
 function course_render_quiz(preview, quiz){
     // preview = $("#quiz-preview");
     preview.html("");
@@ -127,6 +136,7 @@ function course_render_quiz(preview, quiz){
     }
 }
 
+//Add the answer to the quiz
 function course_bind_answer(quiz, answer){
     console.log(answer);
     for (let i = 0; i < quiz.Problem.length; ++i){
@@ -139,6 +149,7 @@ function course_bind_answer(quiz, answer){
     }
 }
 
+//Add the score to the quiz
 function course_bind_score(quiz, score){
     console.log(score);
     for (let i = 0; i < quiz.Problem.length; ++i){
@@ -147,6 +158,7 @@ function course_bind_score(quiz, score){
     }
 }
 
+//Submit the answer to a question
 function course_submit_answer(id, answer, func){
     $.post(
         getRoot() + "/libs/submit.php",
@@ -160,6 +172,7 @@ function course_submit_answer(id, answer, func){
     );
 }
 
+//Submit the score of a answer
 function course_submit_score(uid, qid, score, func){
     $.post(
         getRoot() + "/libs/submit.php",
@@ -173,6 +186,7 @@ function course_submit_score(uid, qid, score, func){
     );
 }
 
+//
 function course_render_score(quiz){
     score = {};
     for (let i = 0; i < quiz.Problem.length; ++i){
@@ -183,6 +197,7 @@ function course_render_score(quiz){
     return score;
 }
 
+//
 function course_render_answer(quiz){
     answer = {};
     for (let i = 0; i < quiz.Problem.length; ++i){
@@ -205,6 +220,7 @@ function course_render_answer(quiz){
     return answer;
 }
 
+//Check the problem
 function course_check_problem(problem){
     if (problem.Type == 0){
         try{
@@ -216,6 +232,7 @@ function course_check_problem(problem){
     return true;
 }
 
+//Show a problem
 function course_problem(id, func){
     $.get(
         getRoot() + "/libs/problem.php",
@@ -228,6 +245,7 @@ function course_problem(id, func){
     );
 }
 
+//New a problem
 function course_new_problem(quiz, func){
     $.post(
         getRoot() + "/libs/problem.php",
@@ -240,6 +258,7 @@ function course_new_problem(quiz, func){
     );
 }
 
+//Update a problem
 function course_update_problem(problem){
     $.post(
         getRoot() + "/libs/problem.php",
@@ -259,6 +278,7 @@ function course_update_problem(problem){
     );
 }
 
+//Show a quiz
 function course_quiz(id, func){
     $.get(
         getRoot() + "/libs/quiz.php",
@@ -271,6 +291,7 @@ function course_quiz(id, func){
     );
 }
 
+//
 function course_quiz_ex(id, uid, func){
     $.get(
         getRoot() + "/libs/quiz.php",
@@ -283,6 +304,7 @@ function course_quiz_ex(id, uid, func){
     );
 }
 
+//Show the students list with quiz
 function course_quiz_student(qid, func){
     $.post(
         getRoot() + "/libs/quiz_student.php",
@@ -295,6 +317,7 @@ function course_quiz_student(qid, func){
     );
 }
 
+//New a quiz
 function course_new_quiz(course, func){
     $.post(
         getRoot() + "/libs/quiz.php",
@@ -307,6 +330,7 @@ function course_new_quiz(course, func){
     );
 }
 
+//Update a quiz
 function course_update_quiz(id, name, content, flag = true){
     $.post(
         getRoot() + "/libs/quiz.php",
@@ -323,6 +347,7 @@ function course_update_quiz(id, name, content, flag = true){
     );
 }
 
+//Show the grade
 function course_grade(id, func){
     $.post(
         getRoot() + "/libs/grades.php", 

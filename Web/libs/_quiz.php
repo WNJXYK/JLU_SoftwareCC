@@ -1,4 +1,9 @@
 <?php
+	//_quiz.php文件用于实现问题功能，内部实现4个与问题操作相关的函数
+	//1.获取问题
+	//2.获得问题答案
+	//3.提交问题
+	//4.更新问题
     function get_quiz_state($qid, $uid){
         $database = get_database();
         $content = $database->get("quiz", "content", ["id" => $qid]);

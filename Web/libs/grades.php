@@ -1,4 +1,5 @@
 <?php
+	//grades.php用于实现成绩有关的功能，学生可以查看个人成绩，教师可以查看所有学生的成绩
     header('Content-Type:application/json; charset=utf-8'); // Return in json
     
     require_once("_user.php"); // User Auth Support

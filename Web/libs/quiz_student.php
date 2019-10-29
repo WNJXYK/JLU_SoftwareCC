@@ -1,4 +1,5 @@
 <?php
+	//quiz_student.php文件主要用于实现教师批改试卷的生成列表功能
     header('Content-Type:application/json; charset=utf-8'); // Return in json
     
     require_once("_user.php"); // User Auth Support

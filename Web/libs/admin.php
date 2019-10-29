@@ -1,5 +1,5 @@
 <?php
-
+	//admin.php文件主要用于让管理员管理课程
 	header('Content-Type:application/json; charset=utf-8'); // Return in json
 	require_once("config.php");
 	require_once("mysql.php"); // Mysql Support
