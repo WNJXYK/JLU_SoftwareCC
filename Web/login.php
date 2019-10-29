@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+    <?php include("./libs/config.php")?>
     <?php include("./pages/header.php")?>
     <body class="hold-transition login-page">
         <div class="login-box">
@@ -45,7 +46,7 @@
                     function(json, status){
                         if (json.status == 0){
                             $("#login").changeButton(2, true, "Success");
-                            redirect(getRoot() + "/,  {"page": "Dashboard"});
+                            redirect(getRoot() + "/",  {"page": "Dashboard"});
                         }else{
                             $("#msg").html(json.msg);
                             $("#login").changeButton(1, false, "Login");

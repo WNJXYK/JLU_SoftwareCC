@@ -1,14 +1,3 @@
-// Get Documents Root
-function getRoot(){
-    var webName = "";
-    if (webName == "") {
-        return window.location.protocol + '//' + window.location.host;
-    }
-    else {
-        return window.location.protocol + '//' + window.location.host + '/' + webName;
-    }
-}
-
 function course_list(func){
     $.get(
         getRoot() + "/libs/course.php", 
@@ -347,5 +336,5 @@ function course_grade(id, func){
 }
 
 $(function(){
-    if ($("#navbar-course").length > 0) $("#navbar-course").html($.cookie("Course_Name"));
+    if ($("#navbar-course").length > 0) $("#navbar-course").html($("#Course_Name").val());
 });

@@ -34,6 +34,16 @@
             html_code = html_code + item;
         }
 
+        if ($.cookie("User_Type") == "Admin"){
+            html_code += '<div class="col-lg-4 col-12">\
+                            <div class="small-box bg-danger">\
+                                <div class="inner"><h3> Admin Panel </h3><br/><br/></div>\
+                                <div class="icon"><i class="fa fa-tools"></i></div>\
+                                <a href="./admin/admin.php" class="small-box-footer">To Edit <i class="fas fa-arrow-circle-right"></i></a>\
+                            </div>\
+                        </div>'
+        }
+
         $("#dashboard-list").html(html_code);
 
         for (let i = 0; i < course_data.length; ++i) 

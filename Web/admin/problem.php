@@ -1,6 +1,6 @@
 <?php
     require_once("../libs/_user.php");
-    if (!check_user_type("Teacher")){ header("Location: /"); exit; }
+    if (!check_user_type("Teacher")){ header("Location: " . URL_PATH. "/"); exit; }
 
     $page_type = "Problem"; 
     $navbar_link = [
@@ -12,7 +12,7 @@
     $problem_id = 0;
     if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["Problem_Edit_ID"])) $problem_id = $_GET["Problem_Edit_ID"]; 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["Problem_Edit_ID"])) $problem_id = $_POST["Problem_Edit_ID"]; 
-    if ($problem_id == 0) { header("Location: /"); exit; }
+    if ($problem_id == 0) { header("Location: " . URL_PATH. "/"); exit; }
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">

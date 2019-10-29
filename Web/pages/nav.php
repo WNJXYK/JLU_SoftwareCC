@@ -9,26 +9,14 @@
     <ol class="navbar-nav ml-2 text-sm">
         <?php foreach ($navbar_link as $key => $value){?>
         <li class="breadcrumb-item <?php echo ($value[2]?"active":""); ?>">
-        <?php if ($value[2]==false) {?> <a href="#" id="<?php echo $value[0]; ?>"><?} echo $key;?></a></li>
+        <?php if ($value[2]==false) {?> <a href="#" id="<?php echo $value[0]; ?>"><?php } echo $key;?></a></li>
         <?php } ?>
     </ol>
     <script type="text/javascript">
         <?php foreach ($navbar_link as $key => $value){ if ($value[1] != "#"){?>
-            $("#<?php echo $value[0]; ?>").click(function(){ redirect("./", {"page": "<?php echo $value[1]; ?>" }); });
+            $("#<?php echo $value[0]; ?>").click(function(){ redirect(getRoot() + "/", {"page": "<?php echo $value[1]; ?>" }); });
         <?php }} ?>
     </script>
-
-    <!-- SEARCH FORM -->
-    <!--form class="form-inline ml-3">
-    <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-        <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-        </button>
-        </div>
-    </div>
-    </form -->
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">

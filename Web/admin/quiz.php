@@ -1,6 +1,6 @@
 <?php
 	require_once("../libs/_user.php");
-	if (!check_user_type("Teacher")){ header("Location: /"); exit; }
+	if (!check_user_type("Teacher")){ header("Location: " . URL_PATH. "/"); exit; }
 
 	$page_type = "Modify Quiz"; 
 	$navbar_link = [
@@ -12,7 +12,7 @@
 	$quiz_id = 0;
     if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["Quiz_Edit_ID"])) $quiz_id = $_GET["Quiz_Edit_ID"]; 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["Quiz_Edit_ID"])) $quiz_id = $_POST["Quiz_Edit_ID"]; 
-    if ($quiz_id == 0) { header("Location: /"); exit; }
+    if ($quiz_id == 0) { header("Location: " . URL_PATH. "/"); exit; }
 ?>
 
 <!DOCTYPE html>

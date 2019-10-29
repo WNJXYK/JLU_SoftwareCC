@@ -8,6 +8,7 @@
   $page_content = "./pages/dashboard.php"; // 页面内容
   $navbar_link = ["Dashboard"=>["navbar-dashboard", "Dashboard", true]]; // 导航栏地址
   if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["page"])) $page_type = $_POST["page"]; // 获得页面种类
+  //echo $page_type;
 
   // Index 框架内部页面导航
   switch($page_type){

@@ -1,15 +1,15 @@
 <!-- Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-    <img src="/imgs/Logo.png" class="brand-image img-circle elevation-3" style="opacity: .8" alt="Canvas Logo" >
+    <a href="<?php echo URL_PATH; ?>" class="brand-link">
+    <img src="<?php echo URL_PATH; ?>/imgs/Logo.png" class="brand-image img-circle elevation-3" style="opacity: .8" alt="Canvas Logo" >
     <span class="brand-text font-weight-light">Canvas</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
     <!-- Sidebar User -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image"><img src="/imgs/Header.png" class="img-circle elevation-2" alt="User Header"></div>
+        <div class="image"><img src="<?php echo URL_PATH; ?>/imgs/Header.png" class="img-circle elevation-2" alt="User Header"></div>
         <div class="info"><a href="#" class="d-block ctext-username">User Name</a></div>
     </div>
     <!-- Sidebar Menu -->
@@ -37,7 +37,7 @@
             </li>
         <!-- Help -->
         <li class="nav-item">
-            <a href="#" class="nav-link"><i class="nav-icon fa fa-question-circle" aria-hidden="true"></i><p>Help</p></a>
+            <a href="https://github.com/WNJXYK/JLU_SoftwareCC" target="_blank" class="nav-link" id="nav-help"><i class="nav-icon fa fa-question-circle" aria-hidden="true"></i><p>Help</p></a>
             </li>
         <!-- Contact -->
         <li class="nav-item">

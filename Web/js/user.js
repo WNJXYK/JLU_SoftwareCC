@@ -18,7 +18,7 @@ $(function(){
     
     // Logout Function
     $("#user-logout").click(function(){ 
-        $.cookie('User_Token', null); 
+        $.removeCookie('User_Token', {"path" : getPath() + "/"}); 
         redirect(getRoot() + "/", {});
     });
 

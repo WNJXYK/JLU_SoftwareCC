@@ -1,6 +1,6 @@
 <?php
     require_once("../libs/_user.php");
-    if (!check_user_type("Admin")){ header("Location: /"); exit; }
+    if (!check_user_type("Admin")){ header("Location: " . URL_PATH. "/"); exit; }
 
     $page_type = "Admin"; 
     $navbar_link = [

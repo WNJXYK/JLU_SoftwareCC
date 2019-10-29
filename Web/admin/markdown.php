@@ -1,6 +1,6 @@
 <?php
     require_once("../libs/_user.php");
-    if (!check_user_type("Teacher")){ header("Location: /"); exit; }
+    if (!check_user_type("Teacher")){ header("Location: " . URL_PATH. "/"); exit; }
 
     $page_type = "Markdown"; 
     $navbar_link = [
@@ -12,7 +12,7 @@
     $markdown_id = 0;
     if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["Markdown_Edit_ID"])) $markdown_id = $_GET["Markdown_Edit_ID"]; 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["Markdown_Edit_ID"])) $markdown_id = $_POST["Markdown_Edit_ID"]; 
-    if ($markdown_id == 0) { header("Location: /"); exit; }
+    if ($markdown_id == 0) { header("Location: " . URL_PATH. "/"); exit; }
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
