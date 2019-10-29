@@ -10,18 +10,18 @@
     ];
 
     $markdown_id = 0;
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["id"])) $markdown_id = $_GET["id"]; 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["id"])) $markdown_id = $_POST["id"]; 
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["Markdown_Edit_ID"])) $markdown_id = $_GET["Markdown_Edit_ID"]; 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["Markdown_Edit_ID"])) $markdown_id = $_POST["Markdown_Edit_ID"]; 
     if ($markdown_id == 0) { header("Location: /"); exit; }
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <?php include("../pages/header.php")?>
+    <?php include("./header.php")?>
     <body class="hold-transition sidebar-mini sidebar-collapse">
         <div class="wrapper">
             <?php include("../pages/nav.php"); ?>
             <?php include("../pages/sidebar.php"); ?>
-            <?php echo "<input type='hidden' value={$markdown_id} id='Markdown_Edit_ID'/>"; ?>
+            <?php //echo "<input type='hidden' value={$markdown_id} id='Markdown_Edit_ID'/>"; ?>
             <div class="content-wrapper">
                 <section class="content-header">
                     <div class="container-fluid">

@@ -10,19 +10,19 @@
 	];
 
 	$course_id = 0;
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["id"])) $course_id = $_GET["id"]; 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["id"])) $course_id = $_POST["id"]; 
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["Course_ID"])) $course_id = $_GET["Course_ID"]; 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["Course_ID"])) $course_id = $_POST["Course_ID"]; 
     if ($course_id == 0) { header("Location: /"); exit; }
 ?>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<?php include("../pages/header.php")?>
+	<?php include("./header.php")?>
 	<body class="hold-transition sidebar-mini sidebar-collapse">
 		<div class="wrapper">
 			<?php include("../pages/nav.php"); ?>
 			<?php include("../pages/sidebar.php"); ?>
-			<?php echo "<input type='hidden' value={$course_id} id='Course_ID'/>"; ?>
+			<?php // echo "<input type='hidden' value={$course_id} id='Course_ID'/>"; ?>
 			<div class="content-wrapper">
 				<section class="content-header">
 					<div class="container-fluid">
@@ -31,7 +31,7 @@
 								<button type="button" class="btn btn-default" onclick="addSection(0);">Add Reading</button>
 								<button type="button" class="btn btn-default" onclick="addSection(1);">Add Discussion</button>
 								<button type="button" class="btn btn-default" onclick="addSection(2);">Add Quiz</button>
-								<button type="button" class="btn btn-default" onclick="updateCourse();">Apply</button>
+								<button type="button" class="btn btn-danger" onclick="updateCourse();">Apply</button>
 						</div>
 					</div>
 				</section>
@@ -89,7 +89,7 @@
 		function arr2json(){
 			let arr = cur_arr;
 			let ret = {"Modules" : []}, cur = {};
-			if (list_arr.length == 0) { alert("Nothing.."); return; }
+			if (list_arr.length == 0) { alert("Nothing.."); return null; }
 			for (let _ = 0; _ < list_arr.length; ++_){
 				let i = list_arr[_];
 				if (_ == 0 && arr[i].Type != 3) { alert("Start with unit, please."); return; }
@@ -120,7 +120,13 @@
 							<div class="input-group-prepend"><span class="input-group-text">' + name_arr[cur_arr[c].Type] + '</span></div>\
 							<input type="text" class="form-control" placeholder="Name" id="drag-item-name-' + c + '" value="' + cur_arr[c].Name + '">';
 				
-				if (cur_arr[c].Type != 3) code += '<span class="input-group-append"><button type="button" class="btn btn-info" onclick="modify(' + c + ');">Modify</button></span>';
+				if (cur_arr[c].Type != 3) {
+					code += '<span class="input-group-append"><button type="button" class="btn ';
+					if (cur_arr[c].ID == 0) code += "btn-primary"; else code += "btn-warning";
+					code += '" onclick="modify(' + c + ');">';
+					if (cur_arr[c].ID == 0) code += "Init"; else code += "Modify";
+					code += '</button></span>';
+				}
 				code += '</div>';
 				node.append($(code));
 			}
@@ -150,13 +156,32 @@
 		function modify(c){
 			if (cur_arr[c].Type == 0 || cur_arr[c].Type == 1){
 				if (cur_arr[c].ID == 0){
-					course_new_markdown(function(id){
+					course_new_markdown($("#Course_ID").val(), function(id){
 						cur_arr[c].ID = id;
+						update($("#drag-pool"), pool_arr);
+						update($("#drag-list"), list_arr); 
 						updateCourse();
-						newdirect("/admin/markdown.php", {"id": cur_arr[c].ID});
+						newdirect(getRoot() + "/admin/markdown.php", {"Markdown_Edit_ID": cur_arr[c].ID});
 					});
 				}else{
-					newdirect("/admin/markdown.php", {"id": cur_arr[c].ID});
+					update($("#drag-pool"), pool_arr);
+					update($("#drag-list"), list_arr); 
+					newdirect(getRoot() + "/admin/markdown.php", {"Markdown_Edit_ID": cur_arr[c].ID});
+				}
+			}
+			if (cur_arr[c].Type == 2){
+				if (cur_arr[c].ID == 0){
+					course_new_quiz($("#Course_ID").val(), function(id){
+						cur_arr[c].ID = id;
+						update($("#drag-pool"), pool_arr);
+						update($("#drag-list"), list_arr); 
+						updateCourse();
+						newdirect(getRoot() + "/admin/quiz.php", {"Quiz_Edit_ID": cur_arr[c].ID});
+					});
+				}else{
+					update($("#drag-pool"), pool_arr);
+					update($("#drag-list"), list_arr);
+					newdirect(getRoot() + "/admin/quiz.php", {"Quiz_Edit_ID": cur_arr[c].ID});
 				}
 			}
 		}
@@ -164,6 +189,7 @@
 		function updateCourse(){
 			updateName();
 			let content = arr2json();
+			if (content == null) return;
 			let id = $("#Course_ID").val();
 			course_update_module(id, content);
 		}

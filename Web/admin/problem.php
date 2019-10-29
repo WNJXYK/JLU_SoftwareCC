@@ -10,18 +10,17 @@
     ];
 
     $problem_id = 0;
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["id"])) $problem_id = $_GET["id"]; 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["id"])) $problem_id = $_POST["id"]; 
-    // if ($problem_id == 0) { header("Location: /"); exit; }
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET["Problem_Edit_ID"])) $problem_id = $_GET["Problem_Edit_ID"]; 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["Problem_Edit_ID"])) $problem_id = $_POST["Problem_Edit_ID"]; 
+    if ($problem_id == 0) { header("Location: /"); exit; }
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <?php include("../pages/header.php")?>
+    <?php include("./header.php")?>
     <body class="hold-transition sidebar-mini sidebar-collapse">
         <div class="wrapper">
             <?php include("../pages/nav.php"); ?>
             <?php include("../pages/sidebar.php"); ?>
-            <?php echo "<input type='hidden' value={$problem_id} id='Problem_ID'/>"; ?>
             <div class="content-wrapper">
                 <section class="content-header">
                     <div class="container-fluid">
@@ -61,6 +60,11 @@
                                                 <label for="Content">Content</label>
                                                 <textarea class="form-control" rows="9" placeholder="Enter Problem Content(Multiple-choice Problem Only)" id="problem-content" oninput="update(3)"></textarea>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="Answer">Answer (Multiple-choice Problem Only)</label>
+                                                <input type="number" class="form-control" id="problem-answer" placeholder="Enter 0, 1, 2, ..." oninput="update(4)">
+                                            </div>
                                             
                                     </div>
                                     <div class="card-footer"></div>
@@ -84,26 +88,7 @@
         </div>
         
         <script>
-            // var markdownID;
-            // function update(){$("#markdown-preview").html(markdown_render.toHTML($("#markdown-input").val()));}
-            // function save(){ course_update_markdown($("#Markdown_Edit_ID").val(), $("#markdown-input").val()); }
-            // $(function(){ 
-            //     course_markdown($("#Markdown_Edit_ID").val(), function(text){ 
-            //         $("#markdown-input").val(text); 
-            //         $('textarea[autoHeight]').autoHeight();
-            //         update();
-            //     }); 
-            // });
-let MC_Pattern = '{\n\
-    "Problem": [\n\
-        "A",\n\
-        "B",\n\
-        "C",\n\
-        "D"\n\
-    ],\n\
-    "Answer": 0\n\
-}\n';
-            var problem = {"ID": 0, "Statement": "Please Choose From A, B, C, D.", "Score": 1, "Type": 0, "Content": MC_Pattern};
+            var problem = {"ID": 0, "Statement": "Please Choose From A, B, C, D.", "Score": 1,  "Type": 0, "Content": "", "Answer": 0};
 
             function updateUI(){
                 $("#problem-statement").val(problem.Statement);
@@ -111,18 +96,14 @@ let MC_Pattern = '{\n\
                 $("#problem-type").val(problem.Type);
                 if (problem.Type != 0){
                     $("#problem-content").attr("disabled", true);
-                    // problem.Content = MC_Pattern;
+                    $("#problem-answer").attr("disabled", true);
                     $("#problem-content").val("");
                 }else{
                     $("#problem-content").removeAttr("disabled");
+                    $("#problem-answer").removeAttr("disabled");
                     $("#problem-content").val(problem.Content);
+                    $("#problem-answer").val(problem.Answer);
                 }
-                
-            }
-
-            function updatePreview(){
-                console.log(problem);
-                console.log(course_render_problem(problem));
                 $("#problem-preview").html(course_render_problem(problem));
             }
 
@@ -143,22 +124,30 @@ let MC_Pattern = '{\n\
                     case 3:
                         problem.Content = $("#problem-content").val();
                         break;
+                    case 4:
+                        problem.Answer = $("#problem-answer").val();
+                        break;
                 }
                 updateUI();
-                updatePreview();
             }
             
             function save(){
                 if (!course_check_problem(problem)){
                     alert("Problem's Format is Incorrect.")
                 }else{
-
+                    course_update_problem(problem);
                 }
             }
 
             $(function(){
-                updateUI();
-                updatePreview();
+                course_problem($("#Problem_Edit_ID").val(), function(json){
+                    problem.ID = json.id;
+                    problem.Score = json.score;
+                    problem.Statement = json.statement;
+                    problem.Type = parseInt(json.type);
+                    problem.Content = JSON.parse(json.content);
+                    updateUI();
+                });
             })
         </script>
     </body>

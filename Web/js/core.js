@@ -74,3 +74,14 @@ function newdirect(URL, PARAMS){
     document.body.appendChild(temp); 
     temp.submit(); return temp; 
 }
+
+// Get Documents Root
+function getRoot(){
+    var webName = "Group2";
+    if (webName == "") {
+        return window.location.protocol + '//' + window.location.host;
+    }
+    else {
+        return window.location.protocol + '//' + window.location.host + '/' + webName;
+    }
+}

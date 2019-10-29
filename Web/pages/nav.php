@@ -14,7 +14,7 @@
     </ol>
     <script type="text/javascript">
         <?php foreach ($navbar_link as $key => $value){ if ($value[1] != "#"){?>
-            $("#<?php echo $value[0]; ?>").click(function(){ redirect("/", {"page": "<?php echo $value[1]; ?>" }); });
+            $("#<?php echo $value[0]; ?>").click(function(){ redirect("./", {"page": "<?php echo $value[1]; ?>" }); });
         <?php }} ?>
     </script>
 
@@ -38,9 +38,10 @@
         <span class="dropdown-item dropdown-header ctext-usertype">User Type</span>
         <span class="dropdown-item dropdown-header ctext-username">User Name</span>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item"> Profile </a>
+        <a href="#" class="dropdown-item" id="user-file"> File </a>
         <a href="#" class="dropdown-item" id="user-inbox"> Inbox </a>
         <a href="#" class="dropdown-item" id="user-logout"> Logout </a>
+        </div>
     </li>
     </ul>
 </nav>

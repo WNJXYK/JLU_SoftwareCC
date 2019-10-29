@@ -25,10 +25,7 @@
                 </div>
                 <div class="row">
                     <div class="col-8">
-                        <div class="icheck-primary">
-                        <input type="checkbox" id="rem">
-                        <label for="remember"> Remember Me </label>
-                        </div>
+                       
                     </div>
                     <div class="col-4"><button type="submit" class="btn btn-primary btn-block btn-flat" id="login">Sign In</button></div>
                 </div>
@@ -48,7 +45,7 @@
                     function(json, status){
                         if (json.status == 0){
                             $("#login").changeButton(2, true, "Success");
-                            redirect("/",  {"page": "Dashboard"});
+                            redirect(getRoot() + "/",  {"page": "Dashboard"});
                         }else{
                             $("#msg").html(json.msg);
                             $("#login").changeButton(1, false, "Login");

@@ -1,6 +1,6 @@
 function comment_list(post, func){
     $.get(
-        "/libs/comment.php", 
+        getRoot() + "/libs/comment.php", 
         {"post": post},
         function(json, status){
             if (json.status == 0){
@@ -19,7 +19,7 @@ function comment_send(post, content, author, reply, func){
     if (reply > 0) data["reply"] = reply;
 
     $.post(
-        "/libs/comment.php", data,
+        getRoot() + "/libs/comment.php", data,
         function(json, status){
             if (json.status == 0){
                 toastr.success("Comment is sent.");
@@ -32,7 +32,7 @@ function comment_send(post, content, author, reply, func){
 
 function comment_delete(id, func){
     $.post(
-        "/libs/comment.php", 
+        getRoot() + "/libs/comment.php", 
         {"id": id},
         function(json, status){
             if (json.status == 0){

@@ -1,6 +1,6 @@
 function user_profile(id, func){
     $.get(
-        "/libs/user.php", 
+        getRoot() + "/libs/user.php", 
         {"id": id},
         function(json, status){
             if (json.status == 0){
@@ -19,11 +19,16 @@ $(function(){
     // Logout Function
     $("#user-logout").click(function(){ 
         $.cookie('User_Token', null); 
-        redirect("/", {});
+        redirect(getRoot() + "/", {});
     });
 
     // Logout Function
     $("#user-inbox").click(function(){ 
-        redirect("/", {"page": "Inbox"}); 
+        redirect(getRoot() + "/", {"page": "Inbox"}); 
+    });
+
+    // Logout Function
+    $("#user-file").click(function(){ 
+        newdirect(getRoot() + "/", {"page": "File"}); 
     });
 });

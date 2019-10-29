@@ -1,4 +1,8 @@
-<!-- Footer -->
+<?php 
+foreach ($_REQUEST as $key => $value) {
+    echo "<input type='hidden' name='DATA-FROM' value='{$value}' id='{$key}'/>";
+} 
+?>
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
     <b>Version</b> Alpha 0.1

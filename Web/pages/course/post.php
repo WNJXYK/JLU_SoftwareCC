@@ -48,7 +48,7 @@
                 msg_code += '<div class="direct-chat-infos clearfix ml-3">';
                 msg_code += '<span class="direct-chat-name float-left" id="comment-username-' + comments[i].id + '">' + comments[i].author + '</span>';
                 msg_code += '<span class="direct-chat-timestamp float-right">' + comments[i].last + '</span></div>';
-                msg_code += '<div class="ml-3"><img class="direct-chat-img" src="/imgs/Header.png" alt="User Header"><div class="direct-chat-text">';
+                msg_code += '<div class="ml-3"><img class="direct-chat-img" src="./imgs/Header.png" alt="User Header"><div class="direct-chat-text">';
                 if (comments[i].reply != null){
                     if (comments[i].reply == 0){
                         msg_code += '> <a href="#comment-' + comments[i].id + '"> Refered comment has been deleted.</a><br/>';
