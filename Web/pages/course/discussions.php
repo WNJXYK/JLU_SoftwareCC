@@ -35,7 +35,7 @@
 
     function discuss(post, name){
         if (post == 0) alert("This Section has not been finished yet."); else{
-            redirect("/", {"page": "Post", "Markdown_ID": post, "Markdown_Title": name});
+            redirect(getRoot() + "/", {"page": "Post", "Markdown_ID": post, "Markdown_Title": name});
         }
     }
 

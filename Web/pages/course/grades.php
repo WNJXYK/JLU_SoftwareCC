@@ -13,37 +13,29 @@
                 <div class="card-body p-0 table-responsive">
                     <table class="table table-hover table-striped">
                         <thead>
-                            <tr><th>Name</th><th>Due</th><th>Score</th><th>Outof</th></tr>
+                            <tr><th>ID</th><th>Name</th><th>Score</th><th>Time</th></tr>
                         </thead>
-                        <tbody>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
-                            <tr><td>SW</td><td>Today</td><td>100</td><td>100</td></tr>
+                        <tbody id="grade-content">
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer ">
-                    <div class="card-tools">
-                        <div class="float-right">
-                            1-50/200
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
-    <!-- /.content -->
 </div>
+
+<script type="text/javascript">
+    function update_grades(json){
+        console.log(json);
+        $("#grade-content").html("");
+        for (let i = 0; i < json.length; ++i){
+            $("#grade-content").append($('<tr><td>' + json[i].uid + '</td><td>' + json[i].name + '</td><td>' + json[i].tot + '</td><td>' + json[i].start + '</td></tr>'));
+        }
+    }
+    
+    $(function(){
+        $("#home-content").html(markdown_render.toHTML("**Loading~**"));
+        course_grade($("#Course_ID").val(), update_grades);
+    });
+</script>

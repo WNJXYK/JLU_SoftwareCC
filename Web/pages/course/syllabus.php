@@ -25,7 +25,7 @@
         course_markdown(json.syllabus, function(text){ $("#syllabus-content").html(markdown_render.toHTML(text)); });
     }
     function update_markdown(json){
-        newdirect("/admin/markdown.php", {"id": json.syllabus });
+        newdirect(getRoot() + "/admin/markdown.php", {"Markdown_Edit_ID": json.syllabus });
     }
     function edit(){ course_module($("#Course_ID").val(), update_markdown); }
     $(function(){

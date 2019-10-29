@@ -60,19 +60,15 @@
         $("#nav-course-list").html(html_code);
         for (let i = 0; i < course_data.length; ++i) 
             $("#nav-course-" + i).click(function(){ 
-                redirect("/", {"page": "Home", "Course_ID": course_data[i]['id'], "Course_Name": course_data[i]['name']}); 
+                redirect(getRoot() + "/", {"page": "Home", "Course_ID": course_data[i]['id'], "Course_Name": course_data[i]['name']}); 
             });
     }
 
     $(function(){
         course_list(update_sidebar_course);
-        $("#nav-dashboard").click(function(){ redirect("/", {}); });
-        $("#nav-calendar").click(function(){ redirect("/", {"page": "Calendar"}); });
-        $("#nav-inbox").click(function(){ redirect("/", {"page": "Inbox"}); });
+        $("#nav-dashboard").click(function(){ redirect(getRoot() + "/", {}); });
+        $("#nav-calendar").click(function(){ redirect(getRoot() + "/", {"page": "Calendar"}); });
+        $("#nav-inbox").click(function(){ redirect(getRoot() + "/", {"page": "Inbox"}); });
+        $("#nav-contact").click(function(){ redirect("mailto:wnjxyk@gmail.com", {}); });
     });
-
-    /*
-    $("#nav-inbox").click(function(){ redirect("index.php", {}); });
-    $("#nav-contact").click(function(){ redirect("index.php", {}); });
-    */
 </script>

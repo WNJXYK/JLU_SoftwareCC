@@ -74,12 +74,34 @@
         "Markdown"=>["navbar-markdown", "#", true]
       ];
       break;
+    case "Quiz":
+      $page_content = "./pages/course.php";
+      $navbar_link = [
+        "Course"=>["navbar-course", "Home", false],
+        "Modules"=>["navbar-modules", "Modules", false],
+        "Quiz"=>["navbar-quiz", "#", true]
+      ];
+      break;
+    case "Assign":
+      $page_content = "./pages/course.php";
+      $navbar_link = [
+        "Course"=>["navbar-course", "Home", false],
+        "Assignments"=>["navbar-assignments", "Assignments", false],
+        "Quiz"=>["navbar-quiz", "#", true]
+      ];
+      break;
     case "Post":
       $page_content = "./pages/course.php";
       $navbar_link = [
         "Course"=>["navbar-course", "Home", false],
         "Discussions"=>["navbar-discussions", "Discussions", false],
         "Markdown"=>["navbar-post", "#", true]
+      ];
+      break;
+    case "File":
+      $page_content = "./pages/file.php";
+      $navbar_link = [
+        "File"=>["navbar-file", "#", true]
       ];
       break;
     default: die("Wrong Parameters."); break;
@@ -90,11 +112,6 @@
 <html lang="zh-CN">
   <?php include("./pages/header.php")?>
   <body class="hold-transition sidebar-mini sidebar-collapse">
-      <?php 
-        foreach ($_REQUEST as $key => $value) {
-            echo "<input type='hidden' name='DATA-FROM' value='{$value}' id='{$key}'/>";
-        } 
-      ?>
       <div class="wrapper">
         <?php include("./pages/nav.php"); ?>
         <?php include("./pages/sidebar.php"); ?>

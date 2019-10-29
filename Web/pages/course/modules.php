@@ -44,25 +44,31 @@
                 switch(content[i].Unit[j].Type) {
                     case 0: 
                         $("#module-item-" + i + "-" + j).click(function(){
-                            if (content[i].Unit[j].ID == 0) alert("This Section has not been finished yet."); else{
-                                redirect("/", {"page": "Markdown", "Markdown_ID": content[i].Unit[j].ID,"Markdown_Title": content[i].Unit[j].Name});
+                            if (content[i].Unit[j].ID == 0) alert("This Section is empty yet."); else{
+                                redirect(getRoot() + "/", {"page": "Markdown", "Markdown_ID": content[i].Unit[j].ID,"Markdown_Title": content[i].Unit[j].Name});
                             }
                         });
                         break;
                     case 1: 
                         $("#module-item-" + i + "-" + j).click(function(){
-                            if (content[i].Unit[j].ID == 0) alert("This Section has not been finished yet."); else{
-                                redirect("/", {"page": "Post", "Markdown_ID": content[i].Unit[j].ID, "Markdown_Title": content[i].Unit[j].Name});
+                            if (content[i].Unit[j].ID == 0) alert("This Section is empty yet."); else{
+                                redirect(getRoot() + "/", {"page": "Post", "Markdown_ID": content[i].Unit[j].ID, "Markdown_Title": content[i].Unit[j].Name});
                             }
                         });
                         break;
-                    case 2: break;
+                    case 2: 
+                        $("#module-item-" + i + "-" + j).click(function(){
+                            if (content[i].Unit[j].ID == 0) alert("This Section is empty yet."); else{
+                                redirect(getRoot() + "/", {"page": "Quiz", "Quiz_ID": content[i].Unit[j].ID});
+                            }
+                        });
+                        break;
                 } 
             }
         }
     }
 
-    function edit(){ newdirect("/admin/modules.php", {"id": $("#Course_ID").val() }); }
+    function edit(){ newdirect(getRoot() + "/admin/modules.php", {}); }
 
     $(function(){
         course_module($("#Course_ID").val(), update_module);

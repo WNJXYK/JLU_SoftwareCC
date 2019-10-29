@@ -24,7 +24,7 @@
         course_markdown(json.home, function(text){ $("#home-content").html(markdown_render.toHTML(text)); });
     }
     function update_markdown(json){
-        newdirect("/admin/markdown.php", {"id": json.home});
+        newdirect(getRoot() + "/admin/markdown.php", {"Markdown_Edit_ID": json.home});
     }
     function edit(){ course_module($("#Course_ID").val(), update_markdown); }
     $(function(){
