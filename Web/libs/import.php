@@ -1,7 +1,7 @@
 <?php
 
 	header('Content-Type:application/json; charset=utf-8'); // Return in json
-	require_once($_SERVER['DOCUMENT_ROOT'] . "/config.php");
+	require_once("config.php");
 	require_once("mysql.php"); // Mysql Support
 	require_once("_user.php"); // User Auth Support
 

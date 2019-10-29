@@ -45,7 +45,7 @@
                     function(json, status){
                         if (json.status == 0){
                             $("#login").changeButton(2, true, "Success");
-                            redirect(getRoot() + "/,  {"page": "Dashboard"});
+                            redirect(getRoot() + "/",  {"page": "Dashboard"});
                         }else{
                             $("#msg").html(json.msg);
                             $("#login").changeButton(1, false, "Login");

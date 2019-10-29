@@ -77,7 +77,7 @@ function newdirect(URL, PARAMS){
 
 // Get Documents Root
 function getRoot(){
-    var webName = "";
+    var webName = "Group2";
     if (webName == "") {
         return window.location.protocol + '//' + window.location.host;
     }

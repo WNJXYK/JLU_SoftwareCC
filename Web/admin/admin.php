@@ -10,7 +10,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <?php include("../pages/header.php")?>
+    <?php include("./header.php")?>
     <body class="hold-transition sidebar-mini sidebar-collapse">
         <div class="wrapper">
             <?php include("../pages/nav.php"); ?>

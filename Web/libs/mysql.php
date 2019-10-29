@@ -1,6 +1,6 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/config.php");
-    require_once(LIB_PATH . "medoo.php");
+    include_once("config.php");
+    require_once("medoo.php");
 
     function get_database(){
         $database = new medoo([
