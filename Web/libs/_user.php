@@ -1,6 +1,6 @@
 <?php
-    include_once("config.php");
-    require_once("mysql.php"); // Mysql Support
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/config.php");
+    require_once(LIB_PATH . "mysql.php"); // Mysql Support
     
     // Check Whether User Token is Valided.
     function check_user_token(){
