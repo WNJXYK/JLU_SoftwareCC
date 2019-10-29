@@ -1,3 +1,13 @@
+// Get Documents Root
+function getRoot(){
+    var webName = "";
+    if (webName == "") {
+        return window.location.protocol + '//' + window.location.host;
+    }
+    else {
+        return window.location.protocol + '//' + window.location.host + '/' + webName;
+    }
+}
 
 function course_list(func){
     $.get(

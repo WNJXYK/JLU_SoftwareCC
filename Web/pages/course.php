@@ -68,10 +68,10 @@
     </section>
 </div>
 <script type="text/javascript">
-    $("#vert-tabs-home-tab").click(function(){ redirect('./', {"page": "Home" }); });
-    $("#vert-tabs-assignments-tab").click(function(){ redirect('./', {"page": "Assignments" }); });
-    $("#vert-tabs-syllabus-tab").click(function(){ redirect('./', {"page": "Syllabus" }); });
-    $("#vert-tabs-modules-tab").click(function(){ redirect('./', {"page": "Modules" }); });
-    $("#vert-tabs-discussions-tab").click(function(){ redirect('./', {"page": "Discussions" }); });
-    $("#vert-tabs-gardes-tab").click(function(){ redirect('./', {"page": "Grades" }); });
+    $("#vert-tabs-home-tab").click(function(){ redirect('/', {"page": "Home" }); });
+    $("#vert-tabs-assignments-tab").click(function(){ redirect('/', {"page": "Assignments" }); });
+    $("#vert-tabs-syllabus-tab").click(function(){ redirect('/', {"page": "Syllabus" }); });
+    $("#vert-tabs-modules-tab").click(function(){ redirect('/', {"page": "Modules" }); });
+    $("#vert-tabs-discussions-tab").click(function(){ redirect('/', {"page": "Discussions" }); });
+    $("#vert-tabs-gardes-tab").click(function(){ redirect('/', {"page": "Grades" }); });
 </script>
