@@ -6,8 +6,10 @@ A Project for JLU Software Comprehensive Course
 * WNJXYK 周植
 * HGZDG 朱任翔
 * u049 胡子木
+* HKFDBG 王登泰
+* lwger 李舞桂
 
-How to install Canvas
+## How to install Canvas
 
 1. 将 ./Web 文件夹中内容负责到服务器中，并进入服务器对应目录
 2. 将 ./SQL/*.sql 导入数据库，根据实际情况选择（推荐 Canvas.sql）
