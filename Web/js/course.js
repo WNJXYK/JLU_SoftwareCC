@@ -158,7 +158,7 @@ function course_bind_score(quiz, score){
     }
 }
 
-//Submit the answer to a question
+//Submit the answer to a quiz
 function course_submit_answer(id, answer, func){
     $.post(
         getRoot() + "/libs/submit.php",
@@ -186,7 +186,7 @@ function course_submit_score(uid, qid, score, func){
     );
 }
 
-//
+// Get the score of current quiz 
 function course_render_score(quiz){
     score = {};
     for (let i = 0; i < quiz.Problem.length; ++i){
@@ -197,7 +197,7 @@ function course_render_score(quiz){
     return score;
 }
 
-//
+// Get the answer of current quiz
 function course_render_answer(quiz){
     answer = {};
     for (let i = 0; i < quiz.Problem.length; ++i){
