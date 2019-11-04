@@ -67,6 +67,19 @@
                                             </tbody>
                                         </table>
                                     </div>
+
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="Date">Date</label>
+                                            <input type="text" class="form-control" id="time-date" placeholder="July 21, 1983 01:15:00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="TimeStamp">TimeStamp</label>
+                                            <input type="text" class="form-control" id="time-time">
+                                        </div>
+                                        <button type="submit" class="btn btn-default float-right" onclick="gentime();">Generate TimeStamp</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -81,6 +94,11 @@
                 for (let i = 0; i < list.length; ++i){
                     cont.append($("<tr><td>" + list[i].id + "</td><td>" + list[i].name + "</td><td>" + list[i].info + "</td><td><a href='#' onclick='deleteCourse(" + list[i].id + ")'>Delete</a></td></tr>"));
                 }
+            }
+
+            function gentime(){
+                let date = new Date($("#time-date").val());
+                $("#time-time").val(date.getTime());
             }
 
             function deleteCourse(x){
